@@ -23,7 +23,6 @@ public class Main
         String option;
         do {
             // Mostrar menú principal con colores y separadores
-            System.out.println(SEPARATOR);
             System.out.println(BOLD + CYAN + "\n        ╔══════════════════════════════╗" + RESET);
             System.out.println(BOLD + CYAN + "        ║        Menú Principal        ║" + RESET);
             System.out.println(BOLD + CYAN + "        ╚══════════════════════════════╝\n" + RESET);
