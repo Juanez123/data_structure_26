@@ -73,6 +73,8 @@ public class Main
             System.out.println(PURPLE + "    [4] Texto mayúscula" + RESET);
             System.out.println(PURPLE + "    [5] Texto minúscula" + RESET);
             System.out.println(PURPLE + "    [6] Palíndromo" + RESET);
+            System.out.println(PURPLE + "    [7] Ejemplos cadenas" + RESET);
+            System.out.println(PURPLE + "    [8] Contar carácter del usuario" + RESET);
             System.out.println(SEPARATOR);
             System.out.print(BOLD + PURPLE + "\nSeleccione una opción: " + RESET);
             resp = input.nextLine();
@@ -106,6 +108,19 @@ public class Main
                 case "6":
                     // Verificar si el texto es palíndromo
                     str.palindrome();
+                    break;
+                case "7":
+                    // Mostrar ejemplos de cadenas (solo instancia, lógica en la clase si se agrega)
+                    ExampleStrings es = new ExampleStrings();
+                    break;
+                case "8":
+                    // Contar ocurrencias de un carácter ingresado por el usuario
+                    char charUser;
+                    System.out.print(PURPLE + "Ingrese un carácter a contar: " + RESET);
+                    // usar next() para leer el primer carácter y luego limpiar el buffer
+                    charUser = input.next().charAt(0);
+                    input.nextLine(); // limpiar resto de la línea
+                    System.out.println(YELLOW + BOLD + "\nEl carácter '" + charUser + "' se encuentra " + str.countChar(charUser) + " veces." + RESET);
                     break;
                 default: 
                     // Opción inválida
