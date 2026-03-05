@@ -1,25 +1,25 @@
 import java.util.Scanner;
 
 import com.packages.strings.*;
+import com.packages.vectors.*;
 
-public class Main
-{
+public class Main {
     // Colores ANSI para la terminal
-    public static final String CYAN = "\u001B[36m";      // Cian para títulos
-    public static final String PURPLE = "\u001B[35m";    // Púrpura para opciones
-    public static final String YELLOW = "\u001B[33m";    // Amarillo para mensajes de salida y error
-    public static final String RESET = "\u001B[0m";      // Reset para volver a color normal
-    public static final String BOLD = "\u001B[1m";       // Negrita
-    public static final String UNDERLINE = "\u001B[4m";  // Subrayado
-    public static final String WHITE = "\u001B[37m";     // Blanco para separadores
-    public static final String SEPARATOR = WHITE + "--------------------------------------------------" + RESET; // Separador visual
+    public static final String CYAN = "\u001B[36m"; // Cian para títulos
+    public static final String PURPLE = "\u001B[35m"; // Púrpura para opciones
+    public static final String YELLOW = "\u001B[33m"; // Amarillo para mensajes de salida y error
+    public static final String RESET = "\u001B[0m"; // Reset para volver a color normal
+    public static final String BOLD = "\u001B[1m"; // Negrita
+    public static final String UNDERLINE = "\u001B[4m"; // Subrayado
+    public static final String WHITE = "\u001B[37m"; // Blanco para separadores
+    public static final String SEPARATOR = WHITE + "--------------------------------------------------" + RESET; // Separador
+                                                                                                                 // visual
 
     // Scanner para leer entrada del usuario
     public static Scanner input = new Scanner(System.in);
 
     // Método principal: muestra el menú principal y gestiona la navegación
-    public static void main(String [] args)
-    {
+    public static void main(String[] args) {
         String resp;
         do {
             // Mostrar menú principal con colores y separadores
@@ -44,20 +44,18 @@ public class Main
                     menuString();
                     break;
                 case "2":
-                    // Opción de vectores (no implementada)
-                    // System.out.println("Hasta pronto");
+                    // Ir al menú de vectores
+                    menuVector();
                     break;
-                default: 
+                default:
                     // Opción inválida
                     System.out.println(YELLOW + BOLD + "\nOpción no válida" + RESET);
             }
         } while (!resp.equals("0")); // Repetir hasta que el usuario elija salir
     }
 
-
     // Menú de cadenas de caracteres
-    public static void menuString()
-    {
+    public static void menuString() {
         String resp;
         StringChar str = new StringChar(); // Instancia para llamar métodos de cadenas
         do {
@@ -120,13 +118,98 @@ public class Main
                     // usar next() para leer el primer carácter y luego limpiar el buffer
                     charUser = input.next().charAt(0);
                     input.nextLine(); // limpiar resto de la línea
-                    System.out.println(YELLOW + BOLD + "\nEl carácter '" + charUser + "' se encuentra " + str.countChar(charUser) + " veces." + RESET);
+                    System.out.println(YELLOW + BOLD + "\nEl carácter '" + charUser + "' se encuentra "
+                            + str.countChar(charUser) + " veces." + RESET);
                     break;
-                default: 
+                default:
                     // Opción inválida
                     System.out.println(YELLOW + BOLD + "\nOpción no válida" + RESET);
             }
         } while (!resp.equals("0")); // Repetir hasta que el usuario elija regresar
     }
-}
 
+    // Menú de vectores
+    public static void menuVector() {
+
+        String resp;
+        int datum, pos;
+        Vector v = new Vector();
+
+        do {
+
+            System.out.println(SEPARATOR);
+            System.out.println(BOLD + CYAN + "\n    ╔══════════════════════════════╗" + RESET);
+            System.out.println(BOLD + CYAN + "    ║        Menú Vectores         ║" + RESET);
+            System.out.println(BOLD + CYAN + "    ╚══════════════════════════════╝\n" + RESET);
+
+            System.out.println(PURPLE + "    [0] Regresar" + RESET);
+            System.out.println(PURPLE + "    [1] Agregar dato" + RESET);
+            System.out.println(PURPLE + "    [2] Tamaño" + RESET);
+            System.out.println(PURPLE + "    [3] Mostrar vector" + RESET);
+            System.out.println(PURPLE + "    [4] Buscar secuencial" + RESET);
+
+            System.out.println(SEPARATOR);
+
+            System.out.print(BOLD + PURPLE + "\nSeleccione una opción: " + RESET);
+            resp = input.nextLine();
+
+            switch (resp) {
+
+                case "0":
+                    break;
+
+                case "1":
+
+                    System.out.print(PURPLE + "Ingrese el dato del vector: " + RESET);
+                    datum = input.nextInt();
+                    input.nextLine();
+
+                    if (v.getN() < v.getT()) {
+                        v.addVector(datum);
+                    } else {
+                        System.out.println("Vector lleno");
+                    }
+
+                    break;
+
+                case "2":
+
+                    System.out.println(PURPLE + "Tamaño vector: " + v.getN() + RESET);
+
+                    break;
+
+                case "3":
+
+                    v.showVector();
+
+                    break;
+
+                case "4":
+
+                    if (v.getN() > 0) {
+
+                        System.out.print(PURPLE + "Dato a buscar: " + RESET);
+                        datum = input.nextInt();
+                        input.nextLine();
+
+                        pos = v.searchSecuencial(datum);
+
+                        if (pos == -1) {
+                            System.out.println(datum + " no se encuentra en el vector");
+                        } else {
+                            System.out.println(datum + " encontrado en posición " + pos);
+                        }
+
+                    } else {
+                        System.out.println("Vector vacío");
+                    }
+
+                    break;
+
+                default:
+                    System.out.println(YELLOW + BOLD + "\nOpción no válida" + RESET);
+            }
+
+        } while (!resp.equals("0"));
+    }
+}
