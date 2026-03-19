@@ -147,6 +147,18 @@ public class Main {
             System.out.println(PURPLE + "    [2] Tamaño" + RESET);
             System.out.println(PURPLE + "    [3] Mostrar vector" + RESET);
             System.out.println(PURPLE + "    [4] Buscar secuencial" + RESET);
+            // Nuevas opciones integradas adaptadas al estilo y colores del proyecto
+            System.out.println(PURPLE + "    [5] Modificar" + RESET);
+            System.out.println(PURPLE + "    [6] Eliminar" + RESET);
+            System.out.println(PURPLE + "    [7] Insertar" + RESET);
+            System.out.println(PURPLE + "    [8] Ordenar (burbuja)" + RESET);
+            System.out.println(PURPLE + "    [9] Suma datos" + RESET);
+            System.out.println(PURPLE + "    [10] Promedio datos" + RESET);
+            System.out.println(PURPLE + "    [11] Mayor dato" + RESET);
+            System.out.println(PURPLE + "    [12] Menor dato" + RESET);
+            System.out.println(PURPLE + "    [13] Varianza" + RESET);
+            System.out.println(PURPLE + "    [14] Desviación" + RESET);
+            System.out.println(PURPLE + "    [15] Intercambio" + RESET);
 
             System.out.println(SEPARATOR);
 
@@ -167,7 +179,7 @@ public class Main {
                     if (v.getN() < v.getT()) {
                         v.addVector(datum);
                     } else {
-                        System.out.println("Vector lleno");
+                        System.out.println(YELLOW + BOLD + "\nVector lleno" + RESET);
                     }
 
                     break;
@@ -195,15 +207,149 @@ public class Main {
                         pos = v.searchSecuencial(datum);
 
                         if (pos == -1) {
-                            System.out.println(datum + " no se encuentra en el vector");
+                            System.out.println(YELLOW + BOLD + datum + " no se encuentra en el vector" + RESET);
                         } else {
-                            System.out.println(datum + " encontrado en posición " + pos);
+                            System.out.println(YELLOW + BOLD + datum + " encontrado en posición " + pos + RESET);
                         }
 
                     } else {
-                        System.out.println("Vector vacío");
+                        System.out.println(YELLOW + BOLD + "Vector vacío" + RESET);
                     }
 
+                    break;
+
+                case "5":
+                    // Modificar un dato existente: buscar y actualizar
+                    if (v.getN() > 0) {
+                        System.out.print(PURPLE + "Dato a modificar: " + RESET);
+                        datum = input.nextInt();
+                        input.nextLine();
+                        pos = v.searchSecuencial(datum);
+                        if (pos == -1) {
+                            System.out.println(YELLOW + BOLD + datum + " no se encuentra en el vector" + RESET);
+                        } else {
+                            System.out.print(PURPLE + "Nuevo dato: " + RESET);
+                            datum = input.nextInt();
+                            input.nextLine();
+                            v.updateVector(datum, pos);
+                            System.out.println(YELLOW + BOLD + "Dato actualizado correctamente" + RESET);
+                        }
+                    } else {
+                        System.out.println(YELLOW + BOLD + "Vector vacío" + RESET);
+                    }
+                    break;
+
+                case "6":
+                    // Eliminar un dato: buscar y borrar por posición
+                    if (v.getN() > 0) {
+                        System.out.print(PURPLE + "Dato a eliminar: " + RESET);
+                        datum = input.nextInt();
+                        input.nextLine();
+                        pos = v.searchSecuencial(datum);
+                        if (pos == -1) {
+                            System.out.println(YELLOW + BOLD + datum + " no se encuentra en el vector" + RESET);
+                        } else {
+                            v.deleteVector(pos);
+                            System.out.println(YELLOW + BOLD + "Dato eliminado correctamente" + RESET);
+                        }
+                    } else {
+                        System.out.println(YELLOW + BOLD + "Vector vacío" + RESET);
+                    }
+                    break;
+
+                case "7":
+                    // Insertar un dato antes de una posición referencia
+                    if (v.getN() < v.getT()) {
+                        System.out.print(PURPLE + "Dato referencia: " + RESET);
+                        datum = input.nextInt();
+                        input.nextLine();
+                        pos = v.searchSecuencial(datum);
+                        if (pos == -1) {
+                            System.out.println(YELLOW + BOLD + datum + " no se encuentra en el vector" + RESET);
+                        } else {
+                            System.out.print(PURPLE + "Dato a insertar: " + RESET);
+                            datum = input.nextInt();
+                            input.nextLine();
+                            v.insertVector(pos, datum);
+                            System.out.println(YELLOW + BOLD + "Dato insertado correctamente" + RESET);
+                        }
+                    } else {
+                        System.out.println(YELLOW + BOLD + "Vector lleno" + RESET);
+                    }
+                    break;
+
+                case "8":
+                    // Ordenar por burbuja
+                    if (v.getN() > 0) {
+                        v.sortBubble();
+                        System.out.println(YELLOW + BOLD + "Vector ordenado correctamente" + RESET);
+                    } else {
+                        System.out.println(YELLOW + BOLD + "Vector vacío" + RESET);
+                    }
+                    break;
+
+                case "9":
+                    // Suma de los datos del vector
+                    if (v.getN() > 0) {
+                        System.out.println(YELLOW + BOLD + "Suma datos vector: " + v.sumVector() + RESET);
+                    } else {
+                        System.out.println(YELLOW + BOLD + "Vector vacío" + RESET);
+                    }
+                    break;
+
+                case "10":
+                    // Promedio de los datos
+                    if (v.getN() > 0) {
+                        System.out.println(YELLOW + BOLD + "Promedio datos vector: " + v.avgVector() + RESET);
+                    } else {
+                        System.out.println(YELLOW + BOLD + "Vector vacío" + RESET);
+                    }
+                    break;
+
+                case "11":
+                    // Mayor dato
+                    if (v.getN() > 0) {
+                        System.out.println(YELLOW + BOLD + "Mayor dato vector: " + v.maxVector() + RESET);
+                    } else {
+                        System.out.println(YELLOW + BOLD + "Vector vacío" + RESET);
+                    }
+                    break;
+
+                case "12":
+                    // Menor dato
+                    if (v.getN() > 0) {
+                        System.out.println(YELLOW + BOLD + "Menor dato vector: " + v.minVector() + RESET);
+                    } else {
+                        System.out.println(YELLOW + BOLD + "Vector vacío" + RESET);
+                    }
+                    break;
+
+                case "13":
+                    // Varianza (se requiere al menos 2 datos)
+                    if (v.getN() > 1) {
+                        System.out.println(YELLOW + BOLD + "Varianza: " + v.variance() + RESET);
+                    } else {
+                        System.out.println(YELLOW + BOLD + "No hay datos suficientes" + RESET);
+                    }
+                    break;
+
+                case "14":
+                    // Desviación estándar (se requiere al menos 2 datos)
+                    if (v.getN() > 1) {
+                        System.out.println(YELLOW + BOLD + "Desviación estándar: " + v.desviation() + RESET);
+                    } else {
+                        System.out.println(YELLOW + BOLD + "No hay datos suficientes" + RESET);
+                    }
+                    break;
+
+                case "15":
+                    // Intercambiar elementos según la lógica de la clase Vector
+                    if (v.getN() > 0) {
+                        v.interchange();
+                        System.out.println(YELLOW + BOLD + "Se intercambiaron los datos del vector" + RESET);
+                    } else {
+                        System.out.println(YELLOW + BOLD + "No hay datos" + RESET);
+                    }
                     break;
 
                 default:
