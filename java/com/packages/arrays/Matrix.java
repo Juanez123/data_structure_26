@@ -122,37 +122,51 @@ public class Matrix
     }
 
     // Imprime la "parte superior" de la matriz (elementos por encima o sobre la diagonal principal)
-    // Implementación actual itera hasta la mitad superior según n
+    // Ahora se muestra en formato matricial respetando filas y columnas: se imprimen tabs en posiciones vacías
     public void upTriangle()
     {
-        for (int i = 0; i <= n / 2; i++) {
-            for (int j = i; j < n - i; j++) {
-                System.out.print(mat[i][j] + "\t");
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // Imprime el elemento si está en o por encima de la diagonal principal (j >= i)
+                if (j >= i) {
+                    System.out.print(mat[i][j] + "\t");
+                } else {
+                    System.out.print("\t");
+                }
             }
+            System.out.println();
         }
-        System.out.println();
     }
 
-    // Imprime la "parte derecha" triangular de la matriz. Atención: usa println para cada elemento
-    // (esto provoca una columna por elemento). Se deja así para conservar la lógica original,
-    // pero puede ajustarse a un formato de tabla cambiando a print con separador.
+    // Imprime la "parte derecha" triangular de la matriz en formato matricial
     public void rightTriangle()
     { 
-        for (int c = n - 1; c >= n / 2 ; c--) {
-            for (int f = c; f >= n - c - 1; f--) {
-                System.out.println(mat[f][c]);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // En la mitad derecha se imprimen los elementos cuya columna j es >= n-1-i
+                if (j >= (n - 1 - i)) {
+                    System.out.print(mat[i][j] + "\t");
+                } else {
+                    System.out.print("\t");
+                }
             }
+            System.out.println();
         }
     }
 
-    // Imprime la "parte izquierda" triangular de la matriz.
-    // Similar a rightTriangle, actualmente imprime cada elemento en una nueva línea.
+    // Imprime la "parte izquierda" triangular de la matriz en formato matricial
     public void leftTriangle()
     { 
-        for (int c = 0; c <= n / 2; c++) {
-            for (int f = c; f < n - c; f++) {
-                System.out.println(mat[f][c]);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // En la mitad izquierda se imprimen los elementos cuya columna j es <= i
+                if (j <= i) {
+                    System.out.print(mat[i][j] + "\t");
+                } else {
+                    System.out.print("\t");
+                }
             }
+            System.out.println();
         }
     }
 

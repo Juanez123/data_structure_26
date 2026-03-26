@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 import com.packages.strings.*;
-import com.packages.vectors.*;
 import com.packages.arrays.*;
 
 public class Main {
